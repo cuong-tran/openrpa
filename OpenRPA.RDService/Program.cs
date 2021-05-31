@@ -524,6 +524,7 @@ namespace OpenRPA.RDService
                 Log.ResetLogPath(logpath);
                 Console.WriteLine("****** BEGIN");
                 
+                /* Here is the actual working Task */
                 Task.Run(async () => {
                     try
                     {
@@ -556,6 +557,7 @@ namespace OpenRPA.RDService
                 {
                     if (args.Length > 0 && (args[0].ToLower() == "service" || args[0].ToLower() == "s"))
                     {
+                        // Manually set current run as "service", for dev purpose maybe?
                         isService = true;
                     }
                     Log.Information("******************************");
@@ -565,6 +567,7 @@ namespace OpenRPA.RDService
                 }
                 else
                 {
+                    /* If we are started as a service then trying to start the Monitor service as well. After that it will quit. */
                     if (Monitormanager.IsServiceInstalled)
                     {
                         _ = Monitormanager.StartService();
