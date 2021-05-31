@@ -6,6 +6,11 @@ using System.Threading.Tasks;
 
 namespace OpenRPA.RDServiceMonitor
 {
+    /**
+     * This is a Windows service to monitor and keep restart the OpenRPA service whenever it is stopped.
+     * At first run it will try to install itself as a service.
+     * At next run, which should as a service, it will continuously monitor the OpenRPA service's status and restart it if it stopped.
+     */
     class Program
     {
         public const string ServiceName = "OpenRPAMon";
@@ -136,6 +141,7 @@ namespace OpenRPA.RDServiceMonitor
             }
             else
             {
+                /* First run, when executed as a program */
                 MyServiceBase.isRunning = false;
                 DoWork();
             }
@@ -144,13 +150,16 @@ namespace OpenRPA.RDServiceMonitor
         {
             if (!manager.IsServiceInstalled)
             {
+                /* Check if it's installed as a service yet, if not then it will install itself */
                 manager.InstallService(typeof(Program), new string[] { });
             }
             while (MyServiceBase.isRunning)
             {
+                /* Only do the loop when it's running as a service, so that it won't stay as a console program */
                 System.Threading.Thread.Sleep(500);
                 if (MyServiceBase.isRunning)
                 {
+                    /* Check for OpenRPA service's status & start its service if stopped */
                     if (OpenRPAmanager.Status == System.ServiceProcess.ServiceControllerStatus.Stopped)
                     {
                         _ = OpenRPAmanager.StartService();
