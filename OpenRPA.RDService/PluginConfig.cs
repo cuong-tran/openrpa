@@ -22,14 +22,22 @@ namespace OpenRPA.RDService
                     var filepath = asm.CodeBase.Replace("file:///", "");
                     var path = System.IO.Path.GetDirectoryName(filepath);
                     _globallocal = AppSettings<Config>.Load(System.IO.Path.Combine(path, "settings.json"));
-                    Console.WriteLine(System.IO.Path.Combine(path, "settings.json"));
+                    Console.WriteLine("PluginConfig: " + System.IO.Path.Combine(path, "settings.json"));
+                    Console.WriteLine(_globallocal.wsurl);
                 }
                 return _globallocal;
             }
         }
         public static TimeSpan reloadinterval  { get { return globallocal.GetProperty<TimeSpan>(pluginname, TimeSpan.FromSeconds(1)); } set { globallocal.SetProperty(pluginname, value); } }
         public static string jwt { get { return globallocal.GetProperty<string>(pluginname, null); } set { globallocal.SetProperty(pluginname, value); } }
-        public static string wsurl { get { return globallocal.GetProperty<string>(pluginname, null); } set { globallocal.SetProperty(pluginname, value); } }        
+        public static string wsurl { get { return globallocal.GetProperty<string>(pluginname, null); } set { globallocal.SetProperty(pluginname, value); } }
+        
+        public static string windowsusername { get { return globallocal.GetProperty<string>(pluginname, null); } set { globallocal.SetProperty(pluginname, value); } }
+        public static string windowspassword { get { return globallocal.GetProperty<string>(pluginname, null); } set { globallocal.SetProperty(pluginname, value); } }
+        public static string serveruri { get { return globallocal.GetProperty<string>(pluginname, null); } set { globallocal.SetProperty(pluginname, value); } }
+        public static bool useasservice { get { return globallocal.GetProperty<bool>(pluginname, false); } set { globallocal.SetProperty(pluginname, value); } }
+        public static TimeSpan processiddelaytime { get { return globallocal.GetProperty<TimeSpan>(pluginname, TimeSpan.FromSeconds(1)); } set { globallocal.SetProperty(pluginname, value); } }
+
         public static string entropy { get { return globallocal.GetProperty<string>(pluginname, null); } set { globallocal.SetProperty(pluginname, value); } }
         public static string tempjwt { get { return globallocal.GetProperty<string>(pluginname, null); } set { globallocal.SetProperty(pluginname, value); } }
         public static bool usefreerdp { get { return globallocal.GetProperty<bool>(pluginname, false); } set { globallocal.SetProperty(pluginname, value); } }

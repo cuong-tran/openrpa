@@ -150,8 +150,16 @@ namespace OpenRPA.RDServiceMonitor
         {
             if (!manager.IsServiceInstalled)
             {
-                /* Check if it's installed as a service yet, if not then it will install itself */
-                manager.InstallService(typeof(Program), new string[] { });
+                /* Check if it's installed as a service yet, if not then it will install itself.
+                 * First run, it will check that service is not installed, then it will install the service.
+                 * Then it see that the current run is not service, then it quits.
+                 * Now the service which was installed will automatically start and then the loop begin.
+                 */
+#if _DEBUG
+#warning Temporary disable service installer to debug
+#else
+                //manager.InstallService(typeof(Program), new string[] { });
+#endif
             }
             while (MyServiceBase.isRunning)
             {

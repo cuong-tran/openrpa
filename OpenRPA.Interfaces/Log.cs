@@ -98,19 +98,23 @@ namespace OpenRPA.Interfaces
             Task.Run(() =>
             {
                 System.Threading.Thread.CurrentThread.Name = "NLogging";
-                switch (category)
+                if(nlog != null)
                 {
-                    case "Error": nlog.Error(message); break;
-                    case "Warning": nlog.Warn(message); break;
-                    case "Output": nlog.Info(message); break;
-                    case "Information": nlog.Info(message); break;
-                    case "Debug": nlog.Debug(message); break;
-                    case "Verbose": nlog.Trace(message); break;
-                    case "Func": nlog.Info(message); break;
-                    case "Activity": nlog.Trace(message); break;
-                    case "Selector": nlog.Debug(message); break;
-                    case "SelectorVerbose": nlog.Trace(message); break;
+                    switch (category)
+                    {
+                        case "Error": nlog.Error(message); break;
+                        case "Warning": nlog.Warn(message); break;
+                        case "Output": nlog.Info(message); break;
+                        case "Information": nlog.Info(message); break;
+                        case "Debug": nlog.Debug(message); break;
+                        case "Verbose": nlog.Trace(message); break;
+                        case "Func": nlog.Info(message); break;
+                        case "Activity": nlog.Trace(message); break;
+                        case "Selector": nlog.Debug(message); break;
+                        case "SelectorVerbose": nlog.Trace(message); break;
+                    }
                 }
+                
             });
         }
         public static void Verbose(string message)

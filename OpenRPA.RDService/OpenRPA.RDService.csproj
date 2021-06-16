@@ -31,6 +31,7 @@
     <Platforms>AnyCPU;x86</Platforms>
     <Authors>Allan Zimmermann</Authors>
     <Company>OpenIAP</Company>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <OutputPath></OutputPath>

@@ -185,6 +185,7 @@ namespace OpenRPA.RDService
                 System.Diagnostics.Debug.WriteLine($"    ## New Session Detected ##");
                 Task.Delay(10000).GetAwaiter().GetResult();
             }
+            Log.Output("RdpConnectionOnOnLoginComplete: ");
             // var rdpSession = (AxMSTSCLib.AxMsRdpClient9NotSafeForScripting)sender;
             // rdpSession.Disconnect();
         }

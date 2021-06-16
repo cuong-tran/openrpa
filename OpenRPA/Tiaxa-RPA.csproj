@@ -10,8 +10,82 @@
     <Description>Base UI of Tiaxa-RPA, used as part of Tiaxa-RPA robot</Description>
     <PackageLicenseExpression>MPL-2.0</PackageLicenseExpression>
     <PackageProjectUrl>https://github.com/open-rpa/openrpa</PackageProjectUrl>
-    <Version>1.0.157</Version>
-    <PackageReleaseNotes>1.0.157 Fix issue with recording keyboard
+    <Version>1.2.39</Version>
+    <PackageReleaseNotes>1.2.39 Fix Map Variables issue for invoke openrpa
+1.2.38 Add support for killing robot workflow remotely
+1.2.37 improve image recording, auto import namespaces on drop
+1.2.36 Better import handling and a few minor improvements
+1.2.35 Use change stream for updates, if supported
+1.2.34 fix ui issue with recorder properties
+1.2.33 Fix issue with search_descendants on windows selector
+1.2.32 Add profile control to nm.openurl
+1.2.31 remove debug info
+1.2.30 Fix span timing issue
+1.2.29 Hit fix sap
+1.2.28 Fix save state issue, fix otel time span issue
+1.2.27 Fix issue with looping activites and otel
+1.2.26 Add otel to openrpa, version 1 / add ReplyMailItem
+1.2.25 Utilities: Fix issue with DeleteAllRows, Allow variables for Invoke OpenRPA , add Expiration for invoke nodes
+1.2.24 Re add FrameworkId to recorded selector
+1.2.23 Windows: allow search_descendants any where in selector / Fix icon on highlight button
+1.2.22 nm: Launch edge using microsoft-edge: uri instead, fix connection test for edge/ff
+1.2.21 windows: Fix ui selector for nesting get elements
+1.2.20 Fix config issue, add toggle for search_descendants
+1.2.19 Return default for illegal Rectangle
+1.2.18 Fix parsing Rect in non us regional settings
+1.2.17 Minor improvements
+1.2.16 Minor fixes to Windows Selector and cache
+1.2.15 Add support for Child Sessions
+1.2.14 Add support for custom screensize for HD robots
+1.2.13 ps: Check for error response on Invoke-Openflow
+1.2.12 Normalize selector code
+1.2.11 Office: Fix creating missing worksheets in typed activities
+1.2.10 Add basic metrics
+1.2.9 Fix Move Mail to support multiple accounts
+1.2.8 Add category to openrpa log file
+1.2.7 Filter cookies on login page for local domain
+1.2.6 Add custom timeout for openining IE browser
+1.2.5 Improve openflow package stiching code
+1.2.4 Fix GetMails to support multiple accounts
+1.2.3 various improvements, improve windows finder in get element
+1.2.2 Integrate new selector with old windows selector
+1.2.1 Try new windows selector
+1.1.19 Remove old updater, auto add namespaces
+1.1.18 Fix major issue with special charecters in nm
+1.1.17 Change frame messsages to json, to avoid conflict with certain webpages
+1.1.16 nm: Add support for SendText/SetText/SendKeys
+1.1.15 Create dedicated asyng get element without a body to avoid confusion on usage / hotfix selector window
+1.1.14 Add support for custom project folder, fix ui thread issue for invoke openrpa
+1.1.13 Various fixes, see commit history, Add support for local robot execution from powershell even when offline
+1.1.12 Fix "cannot select self" on nested windows elements
+1.1.11 Fix JArray parse error / Expose instance as variable / Upgrade CefSharp.Wpf
+1.1.10 Fix issue with importing namespaces when recording_add_to_designer is false
+1.1.9 Various small bug fixes
+1.1.8 Fix initialDirectory for SelectFile
+1.1.7 Quick fix of chrome update to UIElement type
+1.1.6 Fix caseing in nm select item by text
+1.1.5 Fix order in ExpandArchiveDesigner / Fix issue with timeout in nm
+1.1.4 Add CompressArchive and ExpandArchive
+1.1.3 Test rewriting GetElement as async, to support Cancel
+1.1.2 Minor improvements
+1.1.1 Re-Add NuGet Package support - BETA
+1.0.175 Beta: Add PowerShell support
+1.0.174 Test implementation of support for Arabic for readpdf
+1.0.171 Improve pagination for nm, bugfix for office close workbook, add firefox ready addon
+1.0.170 Fix a few issues with argument parsing for invoke openflow. Fix argument mapping UI for Invoke OpenRPA when robot is offline
+1.0.169 Fix excel sheet enumeration bug
+1.0.168 Add passwords for write/read cell, add support for removing password with close workbook, add protect worksheet/unprotect worksheet
+1.0.167 Improve rdservice, add support for running without freerdp as a service
+1.0.166 Add support to update div value
+1.0.165 Load extensions from project folder as well
+1.0.164 Fix selector variables for Open and Close Application
+1.0.163 Fix UTF8 encoding issue with nm extension
+1.0.162 Add OpenRPA.MSSpeech addon
+1.0.161 Add support for multiple file extensions in filter / remove debug from sap / add more ja translations
+1.0.160 Improve error message in invoke openrpa / add option to disable remote invoke with remote_allowed
+1.0.159 Add more ja translations / Add SelectFile Activity / preload all settings from settings.json
+1.0.158 upgrade flaui / Add ClearCache to windows.getelement / add ja translation
+1.0.157 Fix issue with recording keyboard
 1.0.156 Improve nm.WaitForDownload
 1.0.155 Add custom timeout on nm plugin messages
 1.0.154 Fix a few issues, refactor some interfaces, implement controlling isagent from a role
@@ -194,10 +268,18 @@ Add toggle between embedded and locally installed python, Add PipInstall activit
     <None Include="$(OutputPath)\Tiaxa-RPA.exe.config" Pack="true" PackagePath="build" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="CefSharp.Wpf" Version="79.1.360" />
+    <PackageReference Include="CefSharp.Wpf" Version="86.0.241" />
     <PackageReference Include="DotNetProjects.Wpf.Toolkit" Version="5.0.43" />
     <PackageReference Include="Extended.Wpf.Toolkit" Version="3.8.1" />
+    <PackageReference Include="Grpc.Core" Version="2.36.1" />
     <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
+    <PackageReference Include="NuGet.Common" Version="5.4.0" />
+    <PackageReference Include="NuGet.Packaging" Version="5.4.0" />
+    <PackageReference Include="NuGet.Protocol" Version="5.4.0" />
+    <PackageReference Include="NuGet.Resolver" Version="5.4.0" />
+    <PackageReference Include="OpenTelemetry" Version="1.1.0-beta1" />
+    <PackageReference Include="OpenTelemetry.Api" Version="1.1.0-beta1" />
+    <PackageReference Include="OpenTelemetry.Exporter.OpenTelemetryProtocol" Version="1.0.1" />
   </ItemGroup>
   <ItemGroup>
     <None Remove="Activities\ClickElementDesigner.xaml" />
@@ -252,6 +334,7 @@ Add toggle between embedded and locally installed python, Add PipInstall activit
     <None Remove="Resources\Buttons\Package.svg" />
     <None Remove="Resources\Buttons\Paste.png" />
     <None Remove="Resources\Buttons\Paste_mono.png" />
+    <None Remove="Resources\Buttons\picture_in_picture.png" />
     <None Remove="Resources\Buttons\Play.png" />
     <None Remove="Resources\Buttons\ReadExcel.png" />
     <None Remove="Resources\Buttons\Record.png" />
@@ -420,6 +503,7 @@ Add toggle between embedded and locally installed python, Add PipInstall activit
     <None Remove="Resources\toolbox\writeexcel.png" />
     <None Remove="Resources\toolbox\writefile.png" />
     <None Remove="Views\AgentViewProjects.xaml" />
+    <None Remove="Views\ChildSession.xaml" />
     <None Remove="Views\CloseableHeader.xaml" />
     <None Remove="Views\DetectorsView.xaml" />
     <None Remove="Views\EditXAML.xaml" />
@@ -428,6 +512,7 @@ Add toggle between embedded and locally installed python, Add PipInstall activit
     <None Remove="Views\InsertText.xaml" />
     <None Remove="Views\KeyboardSeqWindow.xaml" />
     <None Remove="Views\OpenProject.xaml" />
+    <None Remove="Views\PackageManager.xaml" />
     <None Remove="Views\PermissionsWindow.xaml" />
     <None Remove="Views\RecorderPlugins.xaml" />
     <None Remove="Views\RunPlugins.xaml" />
@@ -498,6 +583,12 @@ Add toggle between embedded and locally installed python, Add PipInstall activit
     <Page Include="Views\AgentViewProjects.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\ChildSession.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\PackageManager.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\WorkflowInstances.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -535,6 +626,7 @@ Add toggle between embedded and locally installed python, Add PipInstall activit
     <Resource Include="Resources\Buttons\OpenBrowser.png" />
     <Resource Include="Resources\Buttons\OpenFirefox.png" />
     <Resource Include="Resources\Buttons\OpenIE.png" />
+    <Resource Include="Resources\Buttons\picture_in_picture.png" />
     <Resource Include="Resources\Buttons\switch_216215.png" />
     <Resource Include="Resources\Buttons\switch_216215.svg" />
     <Resource Include="Resources\Buttons\TypeText_1.png" />
@@ -655,8 +747,14 @@ Add toggle between embedded and locally installed python, Add PipInstall activit
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Reference Include="AxInterop.MSTSCLib">
+      <HintPath>lib\AxInterop.MSTSCLib.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.VisualBasic" />
+    <Reference Include="MSTSCLib">
+      <HintPath>lib\MSTSCLib.dll</HintPath>
+    </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
     <Reference Include="System.Activities" />
@@ -668,6 +766,7 @@ Add toggle between embedded and locally installed python, Add PipInstall activit
     <Reference Include="System.Windows.Controls.Ribbon" />
     <Reference Include="System.Xaml" />
     <Reference Include="WindowsBase" />
+    <Reference Include="WindowsFormsIntegration" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\PinDocMenu_Black.png" />
@@ -825,6 +924,14 @@ Add toggle between embedded and locally installed python, Add PipInstall activit
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>strings.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Update="Microsoft.Expression.Interactions.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="System.Windows.Interactivity.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <Target Name="PushNugetPackage" AfterTargets="Pack" Condition="'$(Configuration)' == 'ReleaseNuget'">
     <Exec Command="nuget.exe push $(OutputPath)..\$(PackageId).$(PackageVersion).nupkg -Source nuget.org" />

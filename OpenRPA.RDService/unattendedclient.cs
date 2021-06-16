@@ -13,6 +13,9 @@ namespace OpenRPA.RDService
         public string windowsusername { get; set; }
         public string windowslogin { get; set; }        
         public string windowspassword { get; set; }
+
+        public string processid { get; set; }
+
         public string computername { get; set; }
         public string computerfqdn { get; set; }
         public string openrpapath { get; set; } = @"%windir%\system32\notepad.exe";
