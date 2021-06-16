@@ -27,7 +27,7 @@ namespace OpenRPA.RDService
                         {
                             DoWork();
                         }
-                        System.Threading.Thread.Sleep(1000);
+                        System.Threading.Thread.Sleep(5000);
                     }
                     catch (Exception ex)
                     {
@@ -203,7 +203,7 @@ namespace OpenRPA.RDService
                     }
                     if (freerdp == null || freerdp.Connected == false) return;
                 }
-                else if (!skiprdp)
+                else if (!skiprdp && Program.isWindowsLocked)
                 {
                     Log.Information("RobotUserSession: DoWork...3\n");
                     if (rdp == null || rdp.Connected == false)
@@ -218,7 +218,7 @@ namespace OpenRPA.RDService
                     {
                         try
                         {
-                            Log.Information("Tesing connection to " + rdpip + " port 3389");
+                            Log.Information("Testing connection to " + rdpip + " port 3389");
                             using (var tcpClient = new System.Net.Sockets.TcpClient())
                             {
                                 var ipAddress = System.Net.IPAddress.Parse(rdpip);
@@ -291,7 +291,7 @@ namespace OpenRPA.RDService
                 Log.Information("get explorer process'");
                 Log.Information("windowsusername: " + client.windowsusername);
                 Log.Information("windowslogin: " + client.windowslogin);
-                    try
+                try
                 {
                     var procs = Process.GetProcessesByName("explorer");
                     System.Diagnostics.Process ownerexplorer = null;
